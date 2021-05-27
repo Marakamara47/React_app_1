@@ -1,15 +1,33 @@
 import React from 'react';
 
 import PostListItem from '../post_list_item/post_list_item';
+import './post_list.css'
 
-import './post_list.css';
+const PostList = ({posts}) => {
+    // eslint-disable-next-line
+    const elements = posts.map( (item) => {
 
-const PostList = () => {
+        if ( typeof item === 'object' && isEmpty(item) ){ 
+            const {id, ...itemProps} = item;
+            return (
+                <li key = {id} className='list-group-item'>
+                    <PostListItem {...itemProps}/>
+                </li>
+            )
+        }
+    })
+
+    function isEmpty(obj) {
+        for(let key in obj)
+        {
+            return true;
+        }
+        return false;
+    }
+
     return (
-        <ul className = "app-list list-group">
-            <PostListItem/>
-            <PostListItem/>
-            <PostListItem/>
+        <ul className="app-list list-group">
+           {elements}
         </ul>
     )
 }
