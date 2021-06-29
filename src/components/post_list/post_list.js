@@ -3,7 +3,7 @@ import React from 'react';
 import PostListItem from '../post_list_item/post_list_item';
 import './post_list.css'
 
-const PostList = ({posts}) => {
+const PostList = ({posts, onDelete}) => {
     // eslint-disable-next-line
     const elements = posts.map( (item) => {
 
@@ -11,7 +11,8 @@ const PostList = ({posts}) => {
             const {id, ...itemProps} = item;
             return (
                 <li key = {id} className='list-group-item'>
-                    <PostListItem {...itemProps}/>
+                    <PostListItem {...itemProps} 
+                                    onDelete = {() => onDelete(id)}/>
                 </li>
             )
         }
